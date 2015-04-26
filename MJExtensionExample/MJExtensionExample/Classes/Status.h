@@ -16,4 +16,8 @@
 @property (strong, nonatomic) User *user;
 /** 转发的微博 */
 @property (strong, nonatomic) Status *retweetedStatus;
+
+@property (copy,nonatomic)NSString* lastStatus;
+
+@property (strong,nonatomic) Status* nextStatus;
 @end

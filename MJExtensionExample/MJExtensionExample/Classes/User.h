@@ -28,4 +28,5 @@ typedef enum {
 @property (assign, nonatomic) Sex sex;
 /** 同性恋 */
 @property (assign, nonatomic, getter=isGay) BOOL gay;
+@property (copy,nonatomic) NSString* userId;
 @end

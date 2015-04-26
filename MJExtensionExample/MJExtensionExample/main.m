@@ -62,16 +62,17 @@ void keyValues2object()
                            @"height" : @1.55,
                            @"money" : @"100.9",
                            @"sex" : @(SexFemale),
-//                           @"gay" : @"1"
-//                           @"gay" : @"NO"
-                           @"gay" : @"true"
+                           //                           @"gay" : @"1"
+                           //                           @"gay" : @"NO"
+                           @"gay" : @"true",
+                           @"user_id":@"123456",
                            };
 
     // 2.将字典转为User模型
     User *user = [User objectWithKeyValues:dict];
 
     // 3.打印User模型的属性
-    NSLog(@"name=%@, icon=%@, age=%zd, height=%@, money=%@, sex=%d, gay=%d", user.name, user.icon, user.age, user.height, user.money, user.sex, user.gay);
+    NSLog(@"name=%@, icon=%@, age=%zd, height=%@, money=%@, sex=%d, gay=%d,userId=%@", user.name, user.icon, user.age, user.height, user.money, user.sex, user.gay,user.userId);
 }
 
 /**
@@ -100,7 +101,8 @@ void keyValues2object2()
                            
                            @"user" : @{
                                    @"name" : @"Jack",
-                                   @"icon" : @"lufy.png"
+                                   @"icon" : @"lufy.png",
+                                   @"user_id":@"7890",
                                    },
                            
                            @"retweetedStatus" : @{
@@ -110,7 +112,28 @@ void keyValues2object2()
                                            @"name" : @"Rose",
                                            @"icon" : @"nami.png"
                                            }
-                                   }
+                                   },
+                           @"last_status":@"value test for last_status",
+                           @"next_status":@{
+                                   @"text" : @"inner 今天下雨刮风",
+                                   @"last_status":@"inner value test for last_status",
+                                   @"user" : @{
+                                           @"name" : @"inner Jack",
+                                           @"icon" : @"inner lufy.png",
+                                           @"user_id":@"inner 7890",
+                                           },
+                                   
+                                   @"retweetedStatus" : @{
+                                           @"text" : @"inner 今天天气真不错！",
+                                           
+                                           @"user" : @{
+                                                   @"name" : @"inner inner Rose",
+                                                   @"icon" : @"inner inner nami.png"
+                                                   }
+                                           },
+                                   
+                                   },
+                           
                            };
 
     // 2.将字典转为Status模型
@@ -203,20 +226,20 @@ void keyValues2object4()
                            @"id" : @"20",
                            @"desciption" : @"好孩子",
                            @"name" : @{
-                                @"newName" : @"lufy",
-                                @"oldName" : @"kitty",
-                                @"info" : @{
-                                    @"nameChangedTime" : @"2013-08-07"
-                                }
-                           },
+                                   @"newName" : @"lufy",
+                                   @"oldName" : @"kitty",
+                                   @"info" : @{
+                                           @"nameChangedTime" : @"2013-08-07"
+                                           }
+                                   },
                            @"other" : @{
-                                @"bag" : @{
-                                    @"name" : @"小书包",
-                                    @"price" : @100.7
-                                }
-                           }
-                        };
-
+                                   @"bag" : @{
+                                           @"name" : @"小书包",
+                                           @"price" : @100.7
+                                           }
+                                   }
+                           };
+    
     // 2.将字典转为Student模型
     Student *stu = [Student objectWithKeyValues:dict];
 
