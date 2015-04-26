@@ -97,6 +97,21 @@ static NSNumberFormatter *_numberFormatter;
 {
     return [self setKeyValues:keyValues context:context error:nil];
 }
+static NSString* convertFromCamel(NSString* key){
+    NSMutableString* mkey = nil;
+    for(int i=0;i<key.length;i++){
+        unichar ch = [key characterAtIndex:i];
+        if (ch>='A'&&ch<='Z') {
+            if (!mkey) {
+                mkey = [NSMutableString stringWithString:key];
+                key=mkey;
+            }
+            [mkey replaceCharactersInRange:NSMakeRange(i, 1) withString:[NSString stringWithFormat:@"_%c",ch+32]];
+            i++;
+        }
+    }
+    return key;
+}
 
 - (instancetype)setKeyValues:(id)keyValues context:(NSManagedObjectContext *)context error:(NSError *__autoreleasing *)error
 {
@@ -119,7 +134,13 @@ static NSNumberFormatter *_numberFormatter;
             NSArray *keys = [property keysFromClass:[self class]];
             for (NSString *key in keys) {
                 if (![value isKindOfClass:[NSDictionary class]]) continue;
-                value = value[key];
+                id tvalue = value[key];
+                if(!tvalue){//尝试驼峰转下划线
+                    value=value[convertFromCamel(key)];
+                }else{
+                    value = tvalue;
+                }
+                
             }
             if (!value || value == [NSNull null]) return;
             
