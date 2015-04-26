@@ -1,3 +1,33 @@
+## Fork modification
+#### Map automatically under_score case to camelCase
+<table>
+<tr>
+<td valign="top">
+<pre>
+{
+  "order_id": 104,
+  "order_product" : @"Product#1",
+  "order_price" : 12.95
+}
+</pre>
+</td>
+<td valign="top">
+<pre>
+@interface OrderModel : NSObject
+
+@property (assign, nonatomic) int orderId;
+@property (assign, nonatomic) float orderPrice;
+@property (strong, nonatomic) NSString* orderProduct;
+
+@end
+
+</pre>
+</td>
+</tr>
+</table>
+
+
+
 ## MJExtension
 * The fastest, most convenient and most nonintrusive conversion between JSON and model.
 
@@ -8,7 +38,8 @@
 * `JSON Array` --> `Model Array`、`Core Data Model Array`
 * `JSONString` --> `Model Array`、`Core Data Model Array`
 * `Model Array`、`Core Data Model Array` --> `JSON Array`
-* Coding all properties of model in one line code. 
+* Coding all properties of model in one line code.
+
 
 ## Differences between MJExtension, JSONModel and Mantle
 * Conversion rate
@@ -524,7 +555,7 @@ NSDictionary *dict = @{
 // 将字典转为User模型
 User *user = [User objectWithKeyValues:dict];
 
-NSLog(@"name=%@, icon=%@, age=%d, height=%@, money=%@, sex=%d", 
+NSLog(@"name=%@, icon=%@, age=%d, height=%@, money=%@, sex=%d",
 	user.name, user.icon, user.age, user.height, user.money, user.sex);
 // name=Jack, icon=lufy.png, age=20, height=1.550000, money=100.9, sex=1
 ```
@@ -797,12 +828,12 @@ stu.oldName = @"rose";
 stu.nowName = @"jack";
 stu.desc = @"handsome";
 stu.nameChangedTime = @"2018-09-08";
-    
+
 Bag *bag = [[Bag alloc] init];
 bag.name = @"小书包";
 bag.price = 205;
 stu.bag = bag;
-    
+
 NSDictionary *stuDict = stu.keyValues;
 NSLog(@"%@", stuDict);
 /*
